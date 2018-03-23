@@ -1,0 +1,35 @@
+#Task_Deskription{
+  border-left: 5px solid grey;
+  padding-left: 8px;
+}
+
+#pID {margin: 0; border-left:5px solid grey;padding-left: 8px;}
+
+#Task_Deskription .Padding {
+  margin: 0;
+  border-left:5px solid grey;
+  padding-left: 8px;
+}
+
+.btn{
+  margin-top: -160px;
+  margin-left: 12px;
+}
+
+.jumbotron {padding-top: 15px;}
+
+#Actions{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-bottom: 16px;
+  margin-top: 44px;
+}
+
+.btn_submit{
+  margin-top: 0;
+}
+
+.file-custom:after {
+  content: attr(data-content);
+}

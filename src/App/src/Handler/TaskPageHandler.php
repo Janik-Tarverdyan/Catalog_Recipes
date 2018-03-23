@@ -15,7 +15,7 @@ use Zend\Expressive\Template;
 use Zend\Expressive\Twig\TwigRenderer;
 use Zend\Expressive\ZendView\ZendViewRenderer;
 
-class HomePageHandler implements RequestHandlerInterface
+class TaskPageHandler implements RequestHandlerInterface
 {
     private $containerName;
 
@@ -89,6 +89,6 @@ class HomePageHandler implements RequestHandlerInterface
             $data['templateDocs'] = 'https://docs.zendframework.com/zend-view/';
         }
 
-        return new HtmlResponse($this->template->render('app::home_page', $data));
+        return new HtmlResponse($this->template->render('task::index', $data));
     }
 }

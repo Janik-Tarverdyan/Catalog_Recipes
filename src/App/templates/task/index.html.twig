@@ -1,19 +1,67 @@
 {% extends '@layout/default.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %} Task {% endblock %}
+
 
 {% block content %}
-    <div class="jumbotron">
-        <h1>Welcome to <span class="zf-green">zend-expressive</span></h1>
+
+    <div id="Task_Deskription" class="jumbotron">
+        <h1>Описание <span class="zf-green">Теста</span></h1>
         <p>
-            Congratulations! You have successfully installed the
-            <a href="https://github.com/zendframework/zend-expressive-skeleton" target="_blank">zend-expressive skeleton application</a>.
-            This skeleton can serve as a simple starting point for you to begin building your application.
+            Реализовать АПИ для приложения “Каталог рецептов”, разрешается использовать мидлвэр (PSR-7) микрофрэймворки, АПИ желательно должно соответствовать РЕСТ стандартам, за исключением некоторых методов которые можно реализовать в виде RPC. АПИ должно давать возможность создать юзера, залогиниться, создавать, редактировать и удалять от лица этого юзера рецепты, так же обязательным полем у рецепта является фотография, следовательно нужно API для загрузки фотографий. Для реализации самого API и сопутствующего ему функционала запрещается использовать библиотеки.
         </p>
-        <p>
-            Expressive builds on zend-stratigility to provide a minimalist PSR-7 middleware framework for PHP.
-        </p>
+        <p class='Padding'> База данных PostgreSql </p>
+        <p class='Padding'> Версия PHP > 7 </p>
     </div>
+        <p><a class="btn btn-success btn-lg" href="https://github.com/Janik-Tarverdyan/Catalog_Recipes.git" target="_blank">Итоговый вариант API на гитхабе.</a></p>
+
+    <div id="Actions" >
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"> Добавит </button>
+        <button type="button" class="btn btn-danger"> Удалить </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Новый рецепт</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/api/catalog/create">
+                            <div class="form-group">
+                                <label for="usr">Имя Рецепта</label>
+                                <input name="Name" type="text" class="form-control" id="usr">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="comment">Описание Рецепта</label>
+                                <textarea name="Description" class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+
+
+                            <label for="comment">Иконка Рецепта</label>
+                            <div>
+                                <label class="file">
+                                    <span class="file-custom"></span>
+                                    <input name="icon" type="file" id="file1" >
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn_submit btn-primary"> Создать </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     <div class="row">
         <div class="col-md-4">
@@ -117,4 +165,15 @@
             {% endif %}
         </div>
     </div>
+
+    <script>
+        $("input[type=file]").change(function(){
+            var fieldVal = $(this).val();
+            if (fieldVal != undefined || fieldVal != "") {
+                $(this).next(".file-custom").attr('data-content', fieldVal);
+            }
+        });
+    </script>
+
+
 {% endblock %}

@@ -8,15 +8,26 @@
     <link rel="shortcut icon" href="https://framework.zend.com/ico/favicon.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+
+    {#<!--================================== Custome Styles =============================================-->#}
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    {#<!--===============================================================================================-->#}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {#<!--===============================================================================================-->#}
+
     <style>
         body { padding-top: 70px; }
         .app { min-height: 100vh; }
         .app-footer { padding-bottom: 1em; }
-        .zf-green, h2 a { color: #68b604; }
+        .zf-green, h2 a { color: #68b604; font-size: 2rem}
+
+
+
     </style>
     {% block stylesheets %}{% endblock %}
 </head>
 <body class="app">
+<div style="background: #0e0a0ab3 none repeat scroll 0% 0%"; class="background"></div>
     <header class="app-header">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container">
@@ -43,12 +54,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ path('api.ping') }}" class="nav-link">
-                                Ping Test
+                            <a href="{{ path('api.task') }}" class="nav-link">
+                                <i class="fa fa-terminal"></i> Task
                             </a>
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#"><i class="fa fa-sign-in-alt"></i> Login</a>
             </div>
         </nav>
     </header>
@@ -70,8 +84,9 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     {% block javascript %}{% endblock %}
+    <script src="/js/main.js"></script>
 </body>
 </html>

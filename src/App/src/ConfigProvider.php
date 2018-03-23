@@ -37,6 +37,7 @@ class ConfigProvider
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                Handler\TaskPageHandler::class => Handler\TaskPageHandlerFactory::class,
             ],
         ];
     }
@@ -51,6 +52,7 @@ class ConfigProvider
                 'app'    => [__DIR__ . '/../templates/app'],
                 'error'  => [__DIR__ . '/../templates/error'],
                 'layout' => [__DIR__ . '/../templates/layout'],
+                'task'   => [__DIR__ . '/../templates/task'],
             ],
         ];
     }
