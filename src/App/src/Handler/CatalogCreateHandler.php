@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
+# class namespace
 namespace App\Handler;
 
+# Usage Modules
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Expressive\Plates\PlatesRenderer;
+use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router;
 use Zend\Expressive\Template;
-use Zend\Expressive\Twig\TwigRenderer;
-use Zend\Expressive\ZendView\ZendViewRenderer;
 
-class TaskPageHandler implements RequestHandlerInterface
+
+class CatalogCreateHandler implements RequestHandlerInterface
 {
     private $containerName;
 
@@ -37,14 +37,26 @@ class TaskPageHandler implements RequestHandlerInterface
     {
         if (! $this->template) {
             return new JsonResponse([
-                'Message' => 'Error 404 Page Not Found',
+                'Message' => 'Error 404 Page found',
             ]);
         }
 
-        $data = [
-            'Title' => 'Task Page',
-        ];
+        if ( isset($_POST['submit']) ):
+            $Name = $_POST['Name'];
+            $Description = $_POST['Description'];
 
-        return new HtmlResponse($this->template->render('task::index', $data));
+            $data = [
+                'Name' => $Name,
+                'Description' => $Description,
+            ];
+
+            return new RedirectResponse('/api/task');
+//            return new JsonResponse($data);
+        else:
+            return new JsonResponse([
+                'Message' => 'Error 404 Page Not Found',
+            ]);
+        endif;
+
     }
 }

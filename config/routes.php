@@ -33,7 +33,28 @@ use Zend\Expressive\MiddlewareFactory;
  * );
  */
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
-    $app->get('/', App\Handler\HomePageHandler::class, 'home');
-    $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
-    $app->get('/api/task', App\Handler\TaskPageHandler::class, 'api.task');
+    $app->get(
+        '/',
+        App\Handler\HomePageHandler::class,
+        'home'
+    );
+
+    $app->get(
+        '/api/ping',
+        App\Handler\PingHandler::class,
+        'api.ping'
+    );
+
+    $app->get(
+        '/api/task',
+        App\Handler\TaskPageHandler::class,
+        'api.task'
+    );
+
+    $app->route(
+        '/api/catalog/create',
+        App\Handler\CatalogCreateHandler::class,
+        Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
+        'api.catalog.create'
+    );
 };

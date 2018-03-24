@@ -38,6 +38,7 @@ class ConfigProvider
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
                 Handler\TaskPageHandler::class => Handler\TaskPageHandlerFactory::class,
+                Handler\CatalogCreateHandler::class => Handler\CatalogCreateHandlerFactory::class,
             ],
         ];
     }
