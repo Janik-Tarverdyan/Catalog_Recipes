@@ -5,6 +5,18 @@ declare(strict_types=1);
 use Zend\ConfigAggregator\ArrayProvider;
 use Zend\ConfigAggregator\ConfigAggregator;
 use Zend\ConfigAggregator\PhpFileProvider;
+use Zend\Db\Adapter\Adapter;
+
+
+$DB_Config = [
+    'driver'   => 'Mysqli',
+    'database' => 'Catalog_Recipes',
+    'username' => 'root',
+    'password' => 'j5a264klxhr',
+];
+
+$Adapter = new Adapter($DB_Config);
+
 
 
 // To enable or disable caching, set the `ConfigAggregator::ENABLE_CACHE` boolean in
@@ -14,6 +26,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Zend\Db\ConfigProvider::class,
     \Zend\Expressive\Router\FastRouteRouter\ConfigProvider::class,
     \Zend\HttpHandlerRunner\ConfigProvider::class,
     \Zend\Expressive\Twig\ConfigProvider::class,

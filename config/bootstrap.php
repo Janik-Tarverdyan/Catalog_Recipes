@@ -8,7 +8,7 @@ require_once "vendor/autoload.php";
 
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/doctrine.global.dist.php"), $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/doctrine.global.php"), $isDevMode);
 // or if you prefer XML
 //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config"), $isDevMode);
 // database configuration parameters
