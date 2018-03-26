@@ -7,16 +7,15 @@ namespace App\Handler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use function session_start;
-use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Expressive\Plates\PlatesRenderer;
-use Zend\Expressive\Router;
+use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Template;
-use Zend\Expressive\Twig\TwigRenderer;
-use Zend\Expressive\ZendView\ZendViewRenderer;
+use Zend\Expressive\Router;
+use function session_start;
 
-class TaskPageHandler implements RequestHandlerInterface
+
+
+class AuthLogoutHandler implements RequestHandlerInterface
 {
     private $containerName;
 
@@ -36,23 +35,14 @@ class TaskPageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
-        if (! $this->template) {
-            return new JsonResponse([
-                'Message' => 'Error 404 Page Not Found',
-            ]);
-        }
         session_start();
+        if(isset($_SESSION['login_user'])):
+            unset($_SESSION['login_user']);
+            return new RedirectResponse('/api/task');
+        endif;
 
-
-        $data = [
-            'Title' => 'Task Page',
-            'session' => '',
-        ];
-
-        if (isset($_SESSION['login_user'])){
-            $data['session'] = $_SESSION['login_user'];
-        }
-
-        return new HtmlResponse($this->template->render('task::index', $data));
+        return new JsonResponse([
+            'Message' => 'Error 404 page not found',
+        ]);
     }
 }
