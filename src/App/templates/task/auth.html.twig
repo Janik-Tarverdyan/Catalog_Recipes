@@ -1,0 +1,131 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %} {{ Title }} {% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <form class="form-horizontal in" id="in" role="form" method="POST" action="{{ path('api.auth.signin') }}">
+
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="email">E-Mail Address</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <input type="text" name="email" class="form-control" id="email"
+                                   placeholder="you@example.com" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <input type="password" name="password" class="form-control" id="password"
+                                   placeholder="Password" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="signin">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" name="btn_signin" id="btn_signin" class="btn btn-success reg"><i class="fa fa-user"></i> Sign in</button>
+                    <a href="#" name="btn_login" id="btn_login" class=""><i class="fa fa-user-plus"></i> Don't have an account? Sign Up</a>
+                </div>
+            </div>
+        </form>
+
+        <form class="form-horizontal up" id="up" role="form" method="POST" action="{{ path('api.auth.signup') }}">
+            <div class="row user" id="user">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="username">UserName</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" name="username" class="form-control" id="username"
+                                   placeholder="Username" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="email">E-Mail Address</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <input type="text" name="email" class="form-control" id="email"
+                                   placeholder="you@example.com" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <input type="password" name="password" class="form-control" id="password"
+                                   placeholder="Password" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row repeat" id="repeat">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="repeat_password">Repeat-Password</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class=""></i></div>
+                            <input type="password" name="repeat_password" class="form-control" id="repeat_password"
+                                   placeholder="Repeat Password" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row signup" id="signup">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" name="btn_signup" id="btn_signup" class="btn btn-success reg"><i class="fa fa-user-plus"></i> Sign up</button>
+                    <a href="#" name="btn_signup" id="btn_register" class=""><i class="fa fa-user"></i> I have an account... Sign In</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

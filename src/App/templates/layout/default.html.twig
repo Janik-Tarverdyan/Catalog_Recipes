@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="https://framework.zend.com/ico/favicon.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
-
     {#<!--================================== Custome Styles =============================================-->#}
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     {#<!--===============================================================================================-->#}
@@ -61,9 +60,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#"><i class="fa fa-sign-in-alt"></i> Login</a>
-            </div>
+            {% block menu %} {% endblock %}
         </nav>
     </header>
 

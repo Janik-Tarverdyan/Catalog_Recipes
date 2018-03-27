@@ -2,6 +2,17 @@
 
 {% block title %} {{ Title }} {% endblock %}
 
+{% block menu %}
+    {% if session %}
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/api/auth/logout"><i class="fa fa-sign-in-alt"></i> Logout </a>
+        </div>
+    {% else %}
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/api/auth"><i class="fa fa-sign-in-alt"></i> Login</a>
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 
@@ -16,10 +27,12 @@
         <p><a class="btn btn-success btn-lg" href="https://github.com/Janik-Tarverdyan/Catalog_Recipes.git" target="_blank">Итоговый вариант API на гитхабе.</a></p>
 
     <div id="Actions" >
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"> Добавит </button>
-        <button type="button" class="btn btn-danger"> Удалить </button>
+        {% if session %}
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"> Добавит </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> Удалить </button>
+        {% endif %}
 
-        <!-- Modal -->
+        <!-- Modal create -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -42,13 +55,13 @@
                             </div>
 
 
-                            {#<label for="comment">Иконка Рецепта</label>#}
-                            {#<div>#}
-                                {#<label class="file">#}
-                                    {#<span class="file-custom"></span>#}
-                                    {#<input name="icon" type="file" id="file1" >#}
-                                {#</label>#}
-                            {#</div>#}
+                            <label for="comment">Иконка Рецепта</label>
+                            <div>
+                                <label class="file">
+                                    <span class="file-custom"></span>
+                                    <input name="icon" type="file" id="file1" >
+                                </label>
+                            </div>
                             <div class="modal-footer">
                                 <button name="submit" class="btn btn_submit btn-primary"> Создать </button>
                             </div>
@@ -56,6 +69,36 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ path('api.receipt.delete') }}" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Новый рецепт</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="usr">Имя Рецепта</label>
+                                <input name="Name" type="text" class="form-control" id="usr">
+                            </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" style="margin: 0px;" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

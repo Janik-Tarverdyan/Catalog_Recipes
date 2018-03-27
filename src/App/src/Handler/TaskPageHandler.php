@@ -10,11 +10,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function session_start;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Expressive\Plates\PlatesRenderer;
 use Zend\Expressive\Router;
 use Zend\Expressive\Template;
-use Zend\Expressive\Twig\TwigRenderer;
-use Zend\Expressive\ZendView\ZendViewRenderer;
 
 class TaskPageHandler implements RequestHandlerInterface
 {

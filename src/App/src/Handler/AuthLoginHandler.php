@@ -55,7 +55,7 @@ class AuthLoginHandler implements RequestHandlerInterface
             return new RedirectResponse('/api/task');
         }
         else{
-            if ( isset($_POST['btn_login']) ){
+            if ( isset($_POST['btn_signin']) ){
                 $eMail    = $_POST['email'];
                 $Password = $_POST['password'];
 

@@ -39,6 +39,15 @@ class ConfigProvider
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
                 Handler\TaskPageHandler::class => Handler\TaskPageHandlerFactory::class,
                 Handler\CatalogCreateHandler::class => Handler\CatalogCreateHandlerFactory::class,
+                Handler\AuthPageHandler::class => Handler\AuthPageHendlerFactory::class,
+                Handler\AuthLoginHandler::class => Handler\AuthLoginHendlerFactory::class,
+                Handler\AuthLogoutHandler::class => Handler\AuthLogoutHendlerFactory::class,
+                Handler\SignUpHandler::class => Handler\SignUpHandlerFactory::class,
+            ],
+            'dependencies' => [
+                'factories' => [
+                    'doctrine.entity_manager.orm_default' => \ContainerInteropDoctrine\EntityManagerFactory::class,
+                ],
             ],
         ];
     }

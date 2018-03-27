@@ -51,10 +51,43 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         'api.task'
     );
 
+    $app->get(
+        '/api/auth',
+        App\Handler\AuthPageHandler::class,
+        'api.auth'
+    );
+
+    $app->get(
+        '/api/auth/logout',
+        App\Handler\AuthLogoutHandler::class,
+        'api.auth.logout'
+    );
+
     $app->route(
         '/api/catalog/create',
         App\Handler\CatalogCreateHandler::class,
         Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
         'api.catalog.create'
+    );
+
+    $app->route(
+        '/api/receipt/delete',
+        App\Handler\CatalogCreateHandler::class,
+        Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
+        'api.receipt.delete'
+    );
+
+    $app->route(
+        '/api/auth/signin',
+        App\Handler\AuthLoginHandler::class,
+        Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
+        'api.auth.signin'
+    );
+
+    $app->route(
+        '/api/auth/signup',
+        App\Handler\SignUpHandler::class,
+        Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
+        'api.auth.signup'
     );
 };
