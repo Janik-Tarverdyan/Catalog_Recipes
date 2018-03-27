@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use function date_add;
-use function pg_escape_literal;
+use function md5;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -13,6 +12,7 @@ use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Template;
 use Zend\Expressive\Router;
+use App\Entity\Users;
 
 
 
@@ -43,6 +43,21 @@ class SignUpHandler implements RequestHandlerInterface
                "Password"    => $_POST['password'],
                "Re_Password" => $_POST['repeat_password'],
            ];
+
+//           if ($data['Password'] === $data['Re_Password']){
+//               $data['Password'] = md5($data['Password']);
+//
+//               $Insert_User = new Users($data['User_Name'], $data['eMail'], $data['Password']);
+////               $Insert_User->jsonSerialize();
+//
+//               $data['insert_user'] = $Insert_User;
+//           }
+//           else
+//           {
+//               return new JsonResponse([
+//                   'Message' => "Password is not valid",
+//               ]);
+//           }
 
            return new JsonResponse($data);
        }

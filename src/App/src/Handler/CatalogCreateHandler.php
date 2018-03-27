@@ -6,6 +6,9 @@ declare(strict_types=1);
 namespace App\Handler;
 
 # Usage Modules
+use DateTime;
+use function getcwd;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -13,6 +16,7 @@ use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router;
 use Zend\Expressive\Template;
+use App\Entity\Receipt_List;
 
 
 class CatalogCreateHandler implements RequestHandlerInterface
@@ -41,22 +45,38 @@ class CatalogCreateHandler implements RequestHandlerInterface
             ]);
         }
 
-        if ( isset($_POST['submit']) ):
-            $Name = $_POST['Name'];
-            $Description = $_POST['Description'];
-
+        if ( isset($_POST['submit']) ) {
             $data = [
-                'Name' => $Name,
-                'Description' => $Description,
+                'Name'        => $_POST['Name'],
+                'Description' => $_POST['Description'],
+                'File'        => $_FILES['icon']['name'],
+                'Path'        => getcwd(),
             ];
 
-            return new RedirectResponse('/api/task');
+            $Upload_Dir = $data['Path'].'/public/uploads/image/';
+            $data['Path'] = $Upload_Dir;
+
+            $Upload_File = $data['Path'].basename($data['File']);
+
+            if (move_uploaded_file($_FILES['icon']['tmp_name'], $Upload_File)) {
+//                $insert_data = new Receipt_List($data['Name'], $data['Description'], $data['File']);
+
+                return new RedirectResponse('/api/task');
+
+            } else {
+                return new JsonResponse([
+                    "Message" => "Possible file upload attack!"
+                ]);
+            }
+
+//            return new RedirectResponse('/api/task');
 //            return new JsonResponse($data);
-        else:
+        }
+        else {
             return new JsonResponse([
                 'Message' => 'Error 404 Page Not Found',
             ]);
-        endif;
+        }
 
     }
 }

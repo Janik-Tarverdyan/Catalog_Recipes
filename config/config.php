@@ -34,6 +34,7 @@ $aggregator = new ConfigAggregator([
     \Zend\Expressive\Router\FastRouteRouter\ConfigProvider::class,
     \Zend\HttpHandlerRunner\ConfigProvider::class,
     \Zend\Expressive\Twig\ConfigProvider::class,
+//    \Doctrine\DBAL\Driver\PDOPgSql\Driver::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
 

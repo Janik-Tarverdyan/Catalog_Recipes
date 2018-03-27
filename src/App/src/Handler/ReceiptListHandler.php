@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action;
+namespace App\Handler;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,6 +19,6 @@ class ReceiptListHandler
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        return new JsonResponse($this->entityManager->find(Receipt_List_List::class, 1));
+        return new JsonResponse($this->entityManager->find(Receipt_List::class, 1));
     }
 }

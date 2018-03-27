@@ -43,10 +43,12 @@ class ConfigProvider
                 Handler\AuthLoginHandler::class => Handler\AuthLoginHendlerFactory::class,
                 Handler\AuthLogoutHandler::class => Handler\AuthLogoutHendlerFactory::class,
                 Handler\SignUpHandler::class => Handler\SignUpHandlerFactory::class,
+                Entity\Receipt_List::class => Entity\Receipt_List::class,
             ],
             'dependencies' => [
                 'factories' => [
                     'doctrine.entity_manager.orm_default' => \ContainerInteropDoctrine\EntityManagerFactory::class,
+                    Entity\Receipt_List::class => Entity\Receipt_List::class,
                 ],
             ],
         ];

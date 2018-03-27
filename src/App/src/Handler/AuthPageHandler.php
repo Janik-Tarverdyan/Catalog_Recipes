@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use Psr\Http\Message\ResponseInterface;
+use function session_start;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use function session_start;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router;
+use Psr\Http\Message\ResponseInterface;
 use Zend\Expressive\Template;
+use Zend\Expressive\Router;
 
 class AuthPageHandler implements RequestHandlerInterface
 {

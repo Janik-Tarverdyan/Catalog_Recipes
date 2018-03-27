@@ -69,7 +69,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/App/src/",
-            "juto\\": "src/juto/src/"
         }
     },
     "autoload-dev": {

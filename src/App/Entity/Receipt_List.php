@@ -9,45 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 * @ORM\Entity(repositoryClass="Receipt_ListRepository")
 * @ORM\Table(name="Receipt_List")
 */
-class Receipt_List implements \JsonSerializable
+class Receipt_List
 {
-//    /**
-//    * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
-//    * @var int
-//    */
-//    protected $id;
-//
-//    /**
-//    * @ORM\Column(type="string")
-//    * @var string
-//    */
-//    protected $name;
-//    /**
-//    * @ORM\Column(type="string")
-//    * @var string
-//    */
-//    protected $description;
-//    /**
-//    * @ORM\Column(type="string")
-//    * @var string
-//    */
-//    protected $file;
-//
-//    /**
-//    * @ORM\Column(type="datetime")
-//    * @var DateTime
-//    */
-//    protected $created;
-//
-//    /**
-//    * @ORM\Column(type="string")
-//    * @var string
-//    */
-//    protected $status;
-
-
-
-    /**
+    /**jsonSerialize
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -68,13 +32,22 @@ class Receipt_List implements \JsonSerializable
     private $description;
 
     /**
+     * @ORM\Column(name="File", type="string", length=255)
+     * @var string
+     */
+    private $file;
+
+    /**
      * Application constructor.
      * @param $name
+     * @param $description
+     * @param $file
      */
-    public function __construct($name, $description)
+    public function Set_Data($name, $description, $file)
     {
         $this->name = $name;
         $this->description = $description;
+        $this->file = $file;
     }
 
     public function jsonSerialize()
@@ -83,67 +56,18 @@ class Receipt_List implements \JsonSerializable
             'ID' => $this->id,
             'Name' => $this->name,
             'Description' => $this->description,
+            'File' => $this->file,
         ];
     }
 
+    public function Get_Name(){
+        return $this->name;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//    public function getId()
-//    {
-//        return $this->id;
-//    }
-//    public function getName()
-//    {
-//        return $this->name;
-//    }
-//    public function getDescription()
-//    {
-//        return $this->description;
-//    }
-//    public function getFile()
-//    {
-//        return $this->file;
-//    }
-//    public function getCreated()
-//    {
-//        return $this->created;
-//    }
-//    public function getStatus()
-//    {
-//        return $this->status;
-//    }
-//
-//
-//    public function setName($name)
-//    {
-//        $this->description = $name;
-//    }
-//    public function setDescription($description)
-//    {
-//        $this->description = $description;
-//    }
-//    public function setFile($file)
-//    {
-//        $this->description = $file;
-//    }
-//    public function setCreated(DateTime $created)
-//    {
-//        $this->created = $created;
-//    }
-//    public function setStatus($status)
-//    {
-//        $this->status = $status;
-//    }
+    public function Get_Description(){
+        return $this->description;
+    }
+    public function Get_File(){
+        return $this->file;
+    }
 }

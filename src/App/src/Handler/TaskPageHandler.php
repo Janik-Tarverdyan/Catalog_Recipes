@@ -12,6 +12,9 @@ use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Expressive\Router;
 use Zend\Expressive\Template;
+use App\Entity\Receipt_List;
+
+
 
 class TaskPageHandler implements RequestHandlerInterface
 {
@@ -45,6 +48,16 @@ class TaskPageHandler implements RequestHandlerInterface
             'Title' => 'Task Page',
             'session' => '',
         ];
+
+//        $receipt_list = new Receipt_List();
+//
+//        $data['receipt_name'] = $receipt_list->Get_Name();
+//        $data['receipt_description'] = $receipt_list->Get_Description();
+//        $data['receipt_file'] = $receipt_list->Get_File();
+
+        $data['receipt_name'] = 'receipt name';
+        $data['receipt_description'] = "receipt description";
+        $data['receipt_file'] = "Arch-Python-logo.png";
 
         if (isset($_SESSION['login_user'])){
             $data['session'] = $_SESSION['login_user'];
